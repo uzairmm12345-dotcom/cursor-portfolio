@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import Socials from "@/components/Socials";
 import SectionHeader from "@/components/SectionHeader";
 import MotionSection from "@/components/MotionSection";
-import TiltCard from "@/components/TiltCard";
 import { FiMail, FiPhone, FiMapPin, FiSend } from "react-icons/fi";
 import { useState } from "react";
 
@@ -80,8 +79,7 @@ const ContactSection = () => {
 
         <div className="grid grid-cols-1 xl:grid-cols-5 gap-6 md:gap-8 xl:gap-10">
           <MotionSection className="xl:col-span-2" delay={0.05}>
-            <TiltCard className="h-full">
-              <div className="p-6 md:p-8 h-full">
+            <div className="h-full rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 md:p-8">
                 <h3 className="h3 mb-3">Get in touch</h3>
                 <p className="text-white/50 text-sm leading-relaxed mb-6">
                   I&apos;m currently available for freelance work or full-time opportunities.
@@ -119,16 +117,17 @@ const ContactSection = () => {
                   <p className="text-xs text-white/40 uppercase tracking-wider mb-3">Follow me</p>
                   <Socials
                     containerStyles="flex gap-3 flex-wrap"
-                    iconStyles="w-10 h-10 glass-card flex justify-center items-center text-white/60 text-sm hover:text-accent hover:border-accent/40 hover:-translate-y-1 transition-all duration-300"
+                    iconStyles="w-10 h-10 glass-card flex justify-center items-center text-white/60 text-sm hover:text-accent hover:border-accent/40 transition-colors duration-300"
                   />
                 </div>
-              </div>
-            </TiltCard>
+            </div>
           </MotionSection>
 
           <MotionSection className="xl:col-span-3" delay={0.12}>
-            <TiltCard tilt={false} glare={false}>
-              <form onSubmit={handleSubmit} className="p-6 md:p-8 xl:p-10 space-y-5">
+            <form
+              onSubmit={handleSubmit}
+              className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 md:p-8 xl:p-10 space-y-5"
+            >
                 <h3 className="h3 mb-2">Send a message</h3>
                 <p className="text-white/40 text-sm mb-4">Fill out the form and I&apos;ll get back to you soon.</p>
 
@@ -185,13 +184,12 @@ const ContactSection = () => {
                   variant="default"
                   size="lg"
                   disabled={isSending}
-                  className="w-full flex items-center justify-center gap-2 disabled:opacity-50 shadow-glow-sm"
+                  className="w-full flex items-center justify-center gap-2 disabled:opacity-50"
                 >
                   {isSending ? "Sending..." : "Send Message"}
                   {!isSending && <FiSend />}
                 </Button>
-              </form>
-            </TiltCard>
+            </form>
           </MotionSection>
         </div>
       </div>

@@ -14,25 +14,23 @@ const Stats = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
 
   return (
-    <div ref={ref} className="w-full perspective-scene">
+    <div ref={ref} className="w-full">
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {stats.map((item, index) => (
           <motion.div
             key={index}
-            className="glass-card p-3 xl:p-5 text-center group relative overflow-hidden"
-            initial={{ opacity: 0, y: 20, rotateX: 12 }}
-            animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-            transition={{ delay: index * 0.1, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            whileHover={{ y: -6, scale: 1.02 }}
+            className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-3 xl:p-5 text-center"
+            initial={{ opacity: 0, y: 12 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: index * 0.08, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-cyan-400/5 opacity-0 group-hover:opacity-100 transition-opacity" />
             {inView && (
-              <div className="relative font-display text-2xl xl:text-3xl font-bold gradient-text mb-1">
-                <CountUp end={item.num} duration={2.5} delay={index * 0.1} />
+              <div className="font-display text-2xl xl:text-3xl font-bold text-accent mb-1">
+                <CountUp end={item.num} duration={2} delay={index * 0.08} />
                 <span>{item.suffix}</span>
               </div>
             )}
-            <p className="relative text-xs xl:text-sm text-white/50 group-hover:text-white/70 transition-colors">
+            <p className="text-xs xl:text-sm text-white/50">
               {item.text}
             </p>
           </motion.div>

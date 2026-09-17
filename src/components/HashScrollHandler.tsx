@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { scrollToSection, type SectionId } from "@/lib/nav-links";
 
-const sectionIds: SectionId[] = ["home", "services", "work", "contact"];
+const sectionIds: SectionId[] = ["home", "projects", "work", "contact"];
 
 export default function HashScrollHandler() {
   useEffect(() => {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getScrollAnchor, type SectionId } from "@/lib/nav-links";
+import { getScrollAnchor, measureHeaderHeight, type SectionId } from "@/lib/nav-links";
 
 /**
  * Tracks which page section is in view for navbar highlighting.
@@ -14,7 +14,13 @@ export function useActiveSection(sectionIds: readonly SectionId[]) {
     const ids = [...sectionIds];
 
     const updateActiveSection = () => {
-      const anchor = getScrollAnchor() + 24;
+      const navTarget = document.documentElement.dataset.navTarget as SectionId | undefined;
+      if (navTarget && ids.includes(navTarget)) {
+        setActiveSection((prev) => (prev === navTarget ? prev : navTarget));
+        return;
+      }
+
+      const anchor = Math.max(getScrollAnchor(), measureHeaderHeight() + 12) + 32;
 
       let current: SectionId = ids[0];
       for (const id of ids) {
